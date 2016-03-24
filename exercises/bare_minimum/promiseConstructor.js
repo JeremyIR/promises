@@ -39,18 +39,9 @@ var pluckFirstLineFromFileAsync = function (filePath) {
   });
 };
 
-return pluckFirstLineFromFileAsync(filePath).then(function(result){
-  return result;
-});
-
-console.log('filepathhh', filePath)
-return pluckFirstLineFromFileAsync(filePath).catch(function(err) {
-  return err;
-});
-
 // This function should retrieve the status code of a GET request to `url`
 var getStatusCodeAsync = function (url) {
-  var promise = new Promise(function(resolve, reject){
+  return new Promise(function(resolve, reject){
     request(url, function(err, response){
       if (err) {
         reject(err);
@@ -62,13 +53,7 @@ var getStatusCodeAsync = function (url) {
   return promise;
 };
 
-return getStatusCodeAsync(url).then(function(response){
-  return response.statusCode;
-})
 
-return getStatusCodeAsync(url).catch(function(err){
-  return err;
-})
 // Export these functions so we can unit test them
 // and reuse them in later code ;)
 module.exports = {

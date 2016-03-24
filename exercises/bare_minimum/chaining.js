@@ -37,17 +37,17 @@ var addNewUserToDatabase = function(user, callback) {
 };
 
 // Always keep one rule of thumb in mind when chaining promises:
-// 
+//
 // Whatever is returned from the function in the `.then` block,
 // is passed to the next `.then` block in the chain
 //
-// Some notes:                           
+// Some notes:
 //   - If a syncronous value is returned, that value is immediately
 //     passed to the next `.then` block
 //
 //   - If a promise is returned, the value that fulfills the promise is eventually
 //     passed to the next `.then` block
-//  
+//
 //   - If a promise is returned and and error occurs inside the promise,
 //     the error falls past the chain, skipping all `.then` blocks,
 //     until it gets caught by a `.catch` block. If there is no `.catch` block,
@@ -79,14 +79,14 @@ var addNewUserToDatabaseAsync = function(user) {
 // Uncomment the lines below and run the example with `node exercises/bare_minimum/chaining.js`
 // It will succeed most of the time, but fail occasionally to demonstrate error handling
 
-// addNewUserToDatabaseAsync({ name: 'Dan', password: 'chickennuggets' })
-//   .then(function(savedUser) {
-//     console.log('All done!')
-//   })
-//   .catch(function(err) {
-//     // Will catch any promise rejections or thrown errors in the chain!
-//     console.log('Oops, caught an error: ', err.message)
-//   });
+addNewUserToDatabaseAsync({ name: 'Dan', password: 'chickennuggets' })
+  .then(function(savedUser) {
+    console.log('All done!')
+  })
+  .catch(function(err) {
+    // Will catch any promise rejections or thrown errors in the chain!
+    console.log('Oops, caught an error: ', err.message)
+  });
 
 /******************************************************************
  *                         Exercises                              *

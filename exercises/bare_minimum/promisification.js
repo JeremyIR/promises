@@ -25,7 +25,7 @@ Promise.promisifyAll(fs);
 
 // Read more: http://bluebirdjs.com/docs/api/promisification.html
 
-// Remember, promisification doesn't always work though! 
+// Remember, promisification doesn't always work though!
 // If a function doesn't follow the node style callback pattern,
 // you'll have to re-implement it as a promise returning function
 
@@ -78,7 +78,7 @@ var generateRandomTokenAsync; // TODO
 var readFileAndMakeItFunny = function (filePath, callback) {
  fs.readFile(filePath, 'utf8', function(err, file) {
    if (err) return callback(err);
-   
+
    var funnyFile = file.split('\n')
      .map(function(line) {
        return line + ' lol';
@@ -89,7 +89,7 @@ var readFileAndMakeItFunny = function (filePath, callback) {
  });
 };
 
-var readFileAndMakeItFunnyAsync; // TODO
+var readFileAndMakeItFunnyAsync;
 
 // Export these functions so we can unit test them
 // and reuse them in later code ;)
