@@ -28,7 +28,7 @@ var pluckFirstLineFromFile = require('./callbackReview').pluckFirstLineFromFile;
 
 // This function should retrieve the first line of the file at `filePath`
 var pluckFirstLineFromFileAsync = function (filePath) {
-   new Promise(function(resolve, reject){
+  var promise = new Promise(function(resolve, reject){
     pluckFirstLineFromFile(filePath, function(err, result){
       if (err) {
         reject(err);
@@ -39,6 +39,7 @@ var pluckFirstLineFromFileAsync = function (filePath) {
   });
   return promise;
 };
+
 
 // This function should retrieve the status code of a GET request to `url`
 var getStatusCodeAsync = function (url) {
@@ -54,9 +55,6 @@ var getStatusCodeAsync = function (url) {
   return promise;
 };
 
-
-// Export these functions so we can unit test them
-// and reuse them in later code ;)
 module.exports = {
   getStatusCodeAsync: getStatusCodeAsync,
   pluckFirstLineFromFileAsync: pluckFirstLineFromFileAsync
