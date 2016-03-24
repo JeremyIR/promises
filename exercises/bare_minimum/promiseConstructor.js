@@ -35,7 +35,7 @@ var pluckFirstLineFromFileAsync = function (filePath) {
       } else {
         resolve(result);
       }
-    });
+    })
   });
   return promise;
 };
@@ -50,7 +50,7 @@ var getStatusCodeAsync = function (url) {
         resolve(response.statusCode);
       }
     })
-  });
+  })
   return promise;
 };
 
