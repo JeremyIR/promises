@@ -25,7 +25,7 @@ Promise.promisifyAll(fs);
 
 // Read more: http://bluebirdjs.com/docs/api/promisification.html
 
-// Remember, promisification doesn't always work though! 
+// Remember, promisification doesn't always work though!
 // If a function doesn't follow the node style callback pattern,
 // you'll have to re-implement it as a promise returning function
 
@@ -42,53 +42,53 @@ Promise.promisifyAll(fs);
 //   (2) The callback is invoked with (err, results)
 
 // (1) Asyncronous HTTP request
-var getGitHubProfile = function (user, callback) {
- var options = {
-   url: 'https://api.github.com/users/'+user,
-   headers: { 'User-Agent': 'request' },
-   json: true  // will JSON.parse(body) for us
- };
+var getGitHubProfile = function(user, callback) {
+    var options = {
+        url: 'https://api.github.com/users/' + user,
+        headers: { 'User-Agent': 'request' },
+        json: true // will JSON.parse(body) for us
+    };
 
- request.get(options, function (err, res, body) {
-   if (err) {
-     callback(err, null);
-   } else if (body.message) {
-     callback(new Error('Failed to get GitHub profile: ' + body.message), null);
-   } else {
-     callback(null, body);
-   }
- });
+    request.get(options, function(err, res, body) {
+        if (err) {
+            callback(err, null);
+        } else if (body.message) {
+            callback(new Error('Failed to get GitHub profile: ' + body.message), null);
+        } else {
+            callback(null, body);
+        }
+    });
 };
 
 var getGitHubProfileAsync = Promise.promisify(getGitHubProfile);
 
 
 // (2) Asyncronous token generation
-var generateRandomToken = function (callback) {
- crypto.randomBytes(20, function(err, buffer) {
-   if (err) return callback(err, null)
-   callback(null, buffer.toString('hex'));
- });
+var generateRandomToken = function(callback) {
+    crypto.randomBytes(20, function(err, buffer) {
+        if (err) return callback(err, null)
+        callback(null, buffer.toString('hex'));
+    });
 };
 
 var generateRandomTokenAsync = Promise.promisify(generateRandomToken);
 
 
 // (3) Asyncronous file manipulation
-var readFileAndMakeItFunny = function (filePath, callback) {
-  return new Promise(function(resolve, reject){ 
-   fs.readFile(filePath, 'utf8', function(err, file) {
-     if (err) return reject(err);
-     
-     var funnyFile = file.split('\n')
-       .map(function(line) {
-         return line + ' lol';
-       })
-       .join('\n')
+var readFileAndMakeItFunny = function(filePath, callback) {
+    return new Promise(function(resolve, reject) {
+        fs.readFile(filePath, 'utf8', function(err, file) {
+            if (err) return reject(err);
 
-     resolve(funnyFile);
-   });
-  })
+            var funnyFile = file.split('\n')
+                .map(function(line) {
+                    return line + ' lol';
+                })
+                .join('\n')
+
+            resolve(funnyFile);
+        });
+    })
 };
 
 var readFileAndMakeItFunnyAsync = readFileAndMakeItFunny;
@@ -96,7 +96,7 @@ var readFileAndMakeItFunnyAsync = readFileAndMakeItFunny;
 // Export these functions so we can unit test them
 // and reuse them in later code ;)
 module.exports = {
-  getGitHubProfileAsync: getGitHubProfileAsync,
-  generateRandomTokenAsync: generateRandomTokenAsync,
-  readFileAndMakeItFunnyAsync: readFileAndMakeItFunnyAsync
+    getGitHubProfileAsync: getGitHubProfileAsync,
+    generateRandomTokenAsync: generateRandomTokenAsync,
+    readFileAndMakeItFunnyAsync: readFileAndMakeItFunnyAsync
 };
